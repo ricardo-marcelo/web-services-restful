@@ -36,7 +36,7 @@ public class App {
 	
 	
 	public static void clienteConsultarTodo() {
-		String url = "http://localhost:8080/ClientesWS-RS-SpringMVC3/rs/cliente/consultartodo";
+		String url = "http://localhost:8080/ClientesWS-RS-SpringMVC4/rs/clientes";
 		RestTemplate restTemplate = new RestTemplate();
 		
 		
