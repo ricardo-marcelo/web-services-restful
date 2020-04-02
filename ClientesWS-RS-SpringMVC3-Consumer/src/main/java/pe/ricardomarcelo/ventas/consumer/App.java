@@ -29,6 +29,8 @@ public class App {
 		Map<String, String> resultado = restTemplate.postForObject(url, 
 				cliente, Map.class);
 		
+		
+		
 		System.out.println(resultado.get("resultado"));
 	}
 	
