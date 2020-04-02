@@ -35,7 +35,7 @@ public class ClienteController {
 		map.put("resultado", resultado);
 		
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Cliente creado", "OK");
+		headers.add("Cliente", "OK");
 		return new ResponseEntity<Map<String,String>>(map, headers, HttpStatus.CREATED);		
 	}
 
@@ -50,7 +50,7 @@ public class ClienteController {
 		if (listaCliente == null) {
 			responseListaCliente = new ResponseEntity<List<Cliente>>(HttpStatus.NOT_FOUND);
 		}else {
-			headers.add("Nro registros", String.valueOf(listaCliente.size()));
+			headers.add("NroRegistros", String.valueOf(listaCliente.size()));
 			responseListaCliente = new ResponseEntity<List<Cliente>>(listaCliente, 
 					headers,HttpStatus.OK);
 		}

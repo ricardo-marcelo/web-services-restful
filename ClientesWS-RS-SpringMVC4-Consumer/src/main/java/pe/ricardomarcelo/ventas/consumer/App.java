@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ public class App {
 
 	public static void main(String[] args) {
 	
-		//clienteCrear();
+		clienteCrear();
 		clienteConsultarTodo();
 	}
 	
@@ -42,11 +43,14 @@ public class App {
 				cliente, Map.class);
 
 		//System.out.println(resultado.get("resultado"));
-		if (response.getStatusCode() == HttpStatus.OK) {
-			System.out.println(response.getBody().get("resultado"));
+		if (response.getStatusCode() == HttpStatus.CREATED) {
+			System.out.println("Header - Cliente: " + response.getHeaders().get("Cliente"));
+			System.out.println("Body - Resultado: " + response.getBody().get("resultado"));
 		} else {
 		    System.out.println("El Response a fallado");
 		}
+		
+	    System.out.println("===========================");
 	}
 	
 	
@@ -55,40 +59,24 @@ public class App {
 		RestTemplate restTemplate = new RestTemplate();
 	
 		HttpHeaders headers = new HttpHeaders();
-	    //headers.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-	    //headers.setAccept(Arrays.asList( MediaType.APPLICATION_JSON_UTF8_VALUE));
-		 headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_UTF8_VALUE);
-	        headers.add(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_UTF8_VALUE);
-		ResponseEntity<Cliente[]> response = restTemplate.getForEntity(url,Cliente[].class,headers);
+		headers.setAccept(Arrays.asList(new MediaType[] { MediaType.APPLICATION_JSON_UTF8 }));
+	  	
+        HttpEntity<String> request = new HttpEntity<String>(headers);
 		
-		
-		for(Cliente cliente : response.getBody()) {
-			System.out.println(cliente.getId() + " - " + cliente.getNombre());	
-		}
-		
-		/*
-		 * ParameterizedTypeReference<HashMap<String, String>> responseType = new
-		 * ParameterizedTypeReference<HashMap<String, String>>() {};
-		 * 
-		 * RequestEntity<Cliente[]> request = RequestEntity.get(new
-		 * URI(url)).accept(MediaType.APPLICATION_JSON).build();
-		 * 
-		 * Map<String, String> jsonDictionary = restTemplate.exchange(request,
-		 * responseType);
-		 * 
-		 * System.out.println(response.getBody().toString());
-		 */
-		
-		/*
-		 * ResponseEntity<Cliente[]> response = restTemplate.exchange(url,
-		 * HttpMethod.GET,null, Cliente[].class);
-		 * 
-		 * 
-		 * 
-		 * for(Cliente cliente : response.getBody()) {
-		 * System.out.println(cliente.getId() + " - " + cliente.getNombre()); }
-		 */
-		    
+	    ResponseEntity<List<Cliente>> response = restTemplate.exchange(url, HttpMethod.GET,
+	    		request, new ParameterizedTypeReference<List<Cliente>>() {});
+
+	    if(response.getStatusCode() == HttpStatus.OK) {
+	    	System.out.println("Header: " + response.getHeaders());
+			for(Cliente cliente : response.getBody()) {
+				System.out.println(cliente.getId() + " - " + cliente.getNombre());	
+			}
+
+	    } else {
+	        System.out.println("No hay registros");
+	    }		    
+	    
+	    System.out.println("===========================");
 	}
 
 }

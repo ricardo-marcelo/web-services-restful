@@ -1,8 +1,6 @@
 package pe.ricardomarcelo.ventas.consumer;
 
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -36,7 +34,7 @@ public class App {
 	
 	
 	public static void clienteConsultarTodo() {
-		String url = "http://localhost:8080/ClientesWS-RS-SpringMVC4/rs/clientes";
+		String url = "http://localhost:8080/ClientesWS-RS-SpringMVC3/rs/cliente/consultartodo";
 		RestTemplate restTemplate = new RestTemplate();
 		
 		
