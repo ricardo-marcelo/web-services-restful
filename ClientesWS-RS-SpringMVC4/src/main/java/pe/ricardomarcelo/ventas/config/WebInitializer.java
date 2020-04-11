@@ -21,7 +21,7 @@ public class WebInitializer implements WebApplicationInitializer{
         DispatcherServlet dispatcher = new DispatcherServlet(ctx);
         ServletRegistration.Dynamic dispatcherServ = servletContext.addServlet("dispatcher", dispatcher);
         dispatcherServ.setLoadOnStartup(1);
-        dispatcherServ.addMapping("/rs/*");
+        dispatcherServ.addMapping("/");
 		              
 	}
 

@@ -34,21 +34,23 @@
 			<version>${jersey2.version}</version>
 		</dependency>
 
-<dependency>
-    <groupId>org.glassfish.jersey.core</groupId>
-    <artifactId>jersey-common</artifactId>
-    <version>${jersey2.version}</version>
-</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-common</artifactId>
+			<version>${jersey2.version}</version>
+		</dependency>
 
-<dependency>
-  <groupId>org.glassfish.jersey.inject</groupId>
-    <artifactId>jersey-hk2</artifactId>
-    <version>${jersey2.version}</version>
-</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.inject</groupId>
+			<artifactId>jersey-hk2</artifactId>
+			<version>${jersey2.version}</version>
+		</dependency>
 
 	</dependencies>
 
 	<build>
+		<finalName>${project.artifactId}</finalName>
+		
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -60,8 +62,6 @@
 					</configuration>
 				</plugin>
 			</plugins>
-		</pluginManagement>
-		
-		  <finalName>${project.artifactId}</finalName>
+		</pluginManagement>		
 	</build>
 </project>

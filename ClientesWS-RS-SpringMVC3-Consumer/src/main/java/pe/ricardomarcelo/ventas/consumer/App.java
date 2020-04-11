@@ -1,6 +1,5 @@
 package pe.ricardomarcelo.ventas.consumer;
 
-
 import java.util.Map;
 
 
@@ -10,14 +9,17 @@ import pe.ricardomarcelo.ventas.model.Cliente;
 
 public class App {
 
-	public static void main(String[] args) {
+	private static String SERVER = "http://localhost:8080";
+	private static String CONTEXT = "/ClientesWS-RS-SpringMVC3";
+	private static String URI = SERVER + CONTEXT + "/rs/clientes";
 	
-		//clienteCrear();
+	public static void main(String[] args) {
+		clienteCrear();
 		clienteConsultarTodo();
 	}
 	
 	public static void clienteCrear() {
-		String url = "http://localhost:8080/ClientesWS-RS-SpringMVC3/rs/cliente/crear";
+		
 		RestTemplate restTemplate = new RestTemplate();
 		
 		Cliente cliente = new Cliente();
@@ -26,26 +28,22 @@ public class App {
 		cliente.setDireccion("Lima");
 		cliente.setTelefono("1235665");
 		
-		Map<String, String> resultado = restTemplate.postForObject(url, 
+		Map<String, String> resultado = restTemplate.postForObject(URI, 
 				cliente, Map.class);
 		
-		
-		
-		System.out.println(resultado.get("resultado"));
+		System.out.println("Resultado: " + resultado.get("resultado"));
+		System.out.println("============================");
 	}
 	
 	
 	public static void clienteConsultarTodo() {
-		String url = "http://localhost:8080/ClientesWS-RS-SpringMVC3/rs/cliente/consultartodo";
+		
 		RestTemplate restTemplate = new RestTemplate();
-		
-		
-		Cliente[] listaCliente = restTemplate.getForObject(url,Cliente[].class);
+			
+		Cliente[] listaCliente = restTemplate.getForObject(URI,Cliente[].class);
 		
 		for(Cliente cliente : listaCliente) {
 			System.out.println(cliente.getId() + " - " + cliente.getNombre());	
-		}
-		
+		}		
 	}
-
 }

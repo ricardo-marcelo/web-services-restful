@@ -1,9 +1,6 @@
 package pe.ricardomarcelo.ventas.model;
 
-
-
 public class Cliente {
-
 	private Integer id;
 	private String nombre;
 	private String direccion;

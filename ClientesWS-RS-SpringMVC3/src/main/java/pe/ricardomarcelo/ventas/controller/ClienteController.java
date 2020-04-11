@@ -16,7 +16,7 @@ import pe.ricardomarcelo.ventas.model.Cliente;
 import pe.ricardomarcelo.ventas.service.ClienteService;
 
 @Controller
-@RequestMapping("/cliente")
+@RequestMapping("/rs/cliente")
 public class ClienteController {
 
 	@Autowired
