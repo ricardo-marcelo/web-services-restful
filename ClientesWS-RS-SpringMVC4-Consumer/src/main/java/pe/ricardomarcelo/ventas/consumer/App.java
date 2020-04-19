@@ -59,7 +59,7 @@ public class App {
 		RestTemplate restTemplate = new RestTemplate();
 	
 		HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Arrays.asList(new MediaType[] { MediaType.APPLICATION_JSON_UTF8 }));
+		headers.setAccept(Arrays.asList(new MediaType[] { MediaType.APPLICATION_JSON }));
 	  	
         HttpEntity<String> request = new HttpEntity<String>(headers);
 		
